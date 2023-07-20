@@ -1,4 +1,11 @@
 #Bot Gpt
+try:
+	import pyrubi
+except:
+	system("pip install pyrubi")
+	print("نصب شد!!")
+	print("_"*60)
+	system("clear")
 from pyrubi import Bot
 from re import findall
 import json
