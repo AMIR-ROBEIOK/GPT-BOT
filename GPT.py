@@ -1,11 +1,4 @@
 #Bot Gpt
-try:
-	import pyrubi
-except:
-	system("pip install pyrubi")
-	print("نصب شد!!")
-	print("_"*60)
-	system("clear")
 from pyrubi import Bot
 from re import findall
 import json
@@ -13,17 +6,17 @@ import requests
 import random
 import shutil
 
-guid =input("گوید گپ : ")
-guid_ch=input("گوید چنل : ")
+guid = 'g0DXohp09c1d4af31548545b8174458a'
+guid_ch = 'c0BbVbH030e2f1359b2a6a254d018704'
 
-bot = Bot=input("اوت اکانت : ")
+bot = Bot("ztlibarnonokolqaqncneyirtgpujkkk")
 
 ekhtar = []
 
 def zzz():
 	return f'''🔸 کاربر @@{name}@@({us_guid}) برای استفاده از ربات باید حتما در کانال زیر عضو شوید
 
-https://rubika.ir/member_rubiza
+https://rubika.ir/get_iran
 
  " اگر قبلا عضو شده اید و با این پیام مواجه شدید یک بار لفت بدین و دوباره عضو بشین "'''
 
@@ -42,6 +35,9 @@ def ek_k():
 			print(bot.delete_message(guid,[msg_id]))
 			bot.ban_chat_member(guid,us_guid)
 	except:pass
+	
+for o in range(20):
+	print(bot.get_chats_update2())
 
 for update in bot.on_message():
     try:
@@ -53,22 +49,22 @@ for update in bot.on_message():
     		print(text)
     		if findall(r"@",text) or findall(r"http",text) or findall(r"https",text) or findall(r"rubika.ir",text) or findall(r"www",text):
     			ek_k()
-    		if text.startswith("+"):
+    		if text.startswith("ربات"):
     			if not us_guid in bot.get_chat_members(guid_ch):
     				bot.send_text(guid,zzz(),message_id=msg_id)
     			else:
-    				if findall(r"کیر",text) or findall(r"کص",text) or findall(r"واژن",text) or findall(r"آلت",text) or findall(r"جق",text) or findall(r"جنده",text) or findall(r"کون",text) or findall(r"ساک",text) or findall(r"سکس",text) or findall(r"جنس",text) or findall(r"حامله",text) or findall(r"بچه",text) or findall(r"باردار",text) or findall(r"ارضا",text):
+    				if findall(r"کیر",text) or findall(r"کص",text) or findall(r"واژن",text) or findall(r"آلت",text) or findall(r"جق",text) or findall(r"جنده",text) or findall(r"کون",text) or findall(r"ساک",text) or findall(r"سکس",text) or findall(r"جنس",text) or findall(r"حامله",text) or findall(r"باردار",text) or findall(r"ارضا",text) or findall(r"کاندوم",text) or findall(r"صکص",text) or findall(r"penis",text) or findall(r"vagina",text) or findall(r"باسن",text):
     					ek_k()
     				else:
     					bot.send_text(guid,f"کاربر @@{name}@@({us_guid}) در حال پردازش سوال شما . . .",message_id=msg_id)
-    					n = text.split("+")[1]
+    					n = text.split("ربات")[1]
     					print(n)
     					p = n.replace(" ","‌")
-    					lo = requests.get(f"https://nahanabzar.ir/ai?text={p}").text
+    					lo = requests.get(f"https://api.arver.ir/gpt.php?text={p}").text
     					print(lo)
-    					gptext = json.loads(lo)['answer']
+    					gptext = json.loads(lo)['text']
     					print(gptext)
-    					u=bot.send_text(guid,f"جواب سوال کاربر @@{name}@@({us_guid}) :\n\n" + '" ' + gptext + ' "',message_id=msg_id)
+    					u=bot.send_text(guid,f"جواب سوال کاربر @@{name}@@({us_guid}) :\n\n" + '" ' + gptext + ' "' + "\n\n🌱\n\n@get_iran",message_id=msg_id)
     					print(u)
     		elif text.startswith("logo"):
     			if not us_guid in bot.get_chat_members(guid_ch):
@@ -79,10 +75,12 @@ for update in bot.on_message():
     				else:
     					bot.send_text(guid,f"کاربر @@{name}@@({us_guid}) لطفاً صبور باشید . . .",message_id=msg_id)
     					svc = text.split("logo ")[1]
+    					print(svc)
     					xcz = str(random.randint(1,138))
+    					print(xcz)
     					poo = svc.replace(" ","‌")
     					getimg = requests.get(f"http://haji-api.ir/ephoto360?type=text&id={xcz}&text={poo}", stream = True)
     					with open("Rasoul.png",'wb') as f:
     						shutil.copyfileobj(getimg.raw, f)
-    						bot.send_image(guid,"Rasoul.png",caption=f"کاربر @@{name}@@({us_guid}) لوگو شما آماده شد 😍🖼️",message_id=msg_id)
+    						print(bot.send_image(guid,"Rasoul.png",caption=f"کاربر @@{name}@@({us_guid}) لوگو شما آماده شد 😍🖼️\n\n@get_iran 🌱\n\n",message_id=msg_id))
     except:pass
